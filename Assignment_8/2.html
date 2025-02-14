@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        .valid { border: 2px solid green; }
+        .invalid { border: 2px solid red; }
+        .error { color: red; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h2>Sign-Up Form</h2>
+    <form id="signup-form">
+        <label>Name: <input type="text" id="name" oninput="validateName()"></label>
+        <span class="error" id="name-error"></span><br><br>
+
+        <label>Email: <input type="email" id="email" oninput="validateEmail()"></label>
+        <span class="error" id="email-error"></span><br><br>
+
+        <label>Password: <input type="password" id="password" oninput="validatePassword()"></label>
+        <span class="error" id="password-error"></span><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateName() {
+            let nameField = document.getElementById("name");
+            let errorMsg = document.getElementById("name-error");
+
+            if (nameField.value.trim() === "") {
+                errorMsg.textContent = "Name must not be empty.";
+                nameField.classList.add("invalid");
+            } else {
+                errorMsg.textContent = "";
+                nameField.classList.add("valid");
+            }
+        }
+
+        function validateEmail() {
+            let emailField = document.getElementById("email");
+            let errorMsg = document.getElementById("email-error");
+            let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!regex.test(emailField.value)) {
+                errorMsg.textContent = "Enter a valid email format.";
+                emailField.classList.add("invalid");
+            } else {
+                errorMsg.textContent = "";
+                emailField.classList.add("valid");
+            }
+        }
+
+        function validatePassword() {
+            let passwordField = document.getElementById("password");
+            let errorMsg = document.getElementById("password-error");
+            let regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+            if (!regex.test(passwordField.value)) {
+                errorMsg.textContent = "Password must be at least 8 characters with 1 uppercase & 1 number.";
+                passwordField.classList.add("invalid");
+            } else {
+                errorMsg.textContent = "";
+                passwordField.classList.add("valid");
+            }
+        }
+    </script>
+</body>
+</html>

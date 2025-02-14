@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table Creator</title>
+</head>
+<body>
+    <h2>Dynamic Table Creator</h2>
+    <label>Rows: <input type="number" id="rows" min="1"></label>
+    <label>Columns: <input type="number" id="cols" min="1"></label>
+    <button onclick="generateTable()">Generate Table</button>
+    <div id="table-container"></div>
+
+    <script>
+        function generateTable() {
+            let rows = document.getElementById("rows").value;
+            let cols = document.getElementById("cols").value;
+            let container = document.getElementById("table-container");
+
+            if (rows <= 0 || cols <= 0) {
+                alert("Please enter valid numbers for rows and columns.");
+                return;
+            }
+
+            let table = document.createElement("table");
+            table.border = "1";
+
+            for (let i = 0; i < rows; i++) {
+                let tr = document.createElement("tr");
+                for (let j = 0; j < cols; j++) {
+                    let td = document.createElement("td");
+                    td.textContent = `Row ${i + 1} Col ${j + 1}`;
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+
+            container.innerHTML = "";
+            container.appendChild(table);
+        }
+    </script>
+</body>
+</html>

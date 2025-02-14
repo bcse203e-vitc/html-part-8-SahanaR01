@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Press Detector</title>
+</head>
+<body>
+    <h2>Press Any Key</h2>
+    <p id="key-display">Press a key...</p>
+
+    <script>
+        document.addEventListener("keydown", function(event) {
+            document.getElementById("key-display").textContent = `You pressed: ${event.key}`;
+        });
+    </script>
+</body>
+</html>
